@@ -1,33 +1,38 @@
-<div class="row">
-    <div class="col-xs-12">
-        <img src="" alt="" class="img-responsive">
-    </div>
+<div *ngIf="!receivedRecipe">
+    <h2>Please Select a Recipe</h2>
 </div>
-<div class="row">
-    <div class="col-xs-12">
-        <h1>Recipe Name</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe<span
-                    class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a>Add to Shopping List</a></li>
-                <li><a>Edit Recipe</a></li>
-                <li><a>Delete Recipe</a></li>
-            </ul>
+<div *ngIf="receivedRecipe">
+    <div class="row">
+        <div class="col-xs-12">
+            <img [src]="receivedRecipe.imagePath" [alt]="receivedRecipe.name" class="img-responsive">
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        Description
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>{{receivedRecipe.name}}</h1>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        Ingredients
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe<span
+                        class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a>Add to Shopping List</a></li>
+                    <li><a>Edit Recipe</a></li>
+                    <li><a>Delete Recipe</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            {{receivedRecipe.description}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            Ingredients
+        </div>
     </div>
 </div>
