@@ -10,7 +10,7 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
 
-    @Input() receivedRecipe?: Recipe;
+    @Input() receivedRecipe: any;
     constructor(
         private shoppingListService: ShoppingListService
     ) {}
@@ -18,7 +18,7 @@ export class RecipeDetailComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    addToShoppingList(ingredients: Ingredient[]) {
-        this.shoppingListService.addIngredients(ingredients);
+    addToShoppingList() {
+        this.shoppingListService.addIngredients(this.receivedRecipe.ingredients);
     }
 }

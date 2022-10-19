@@ -20,12 +20,29 @@ export class ShoppingListService {
     }
 
     addIngredient(newIngredient: Ingredient) {
-        this.ingredients.push(newIngredient);
+        this.integrateIngredients(newIngredient);
         this.ingredientChanged.emit(this.ingredients.slice());
     }
 
     addIngredients(ingredients: Ingredient[]) {
-        this.ingredients.push(...ingredients);
+        for(let ingredient of ingredients) {
+            this.integrateIngredients(ingredient);
+        }
         this.ingredientChanged.emit(this.ingredients.slice());
+    }
+
+    integrateIngredients(newIngredient: Ingredient) {
+        let theIngredient: any;
+        this.ingredients.filter(ingredient => {
+            if(ingredient.name == newIngredient.name) {
+                theIngredient = ingredient;
+            }
+        });
+
+        if(theIngredient) {
+            theIngredient.amount = +theIngredient.amount + +newIngredient.amount;
+        } else {
+            this.ingredients.push(newIngredient);
+        }
     }
 }
