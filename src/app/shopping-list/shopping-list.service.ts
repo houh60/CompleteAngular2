@@ -25,7 +25,8 @@ export class ShoppingListService {
     }
 
     addIngredients(ingredients: Ingredient[]) {
-        for(let ingredient of ingredients) {
+        let transIngredients = JSON.parse(JSON.stringify(ingredients));
+        for(let ingredient of transIngredients) {
             this.integrateIngredients(ingredient);
         }
         this.ingredientChanged.emit(this.ingredients.slice());
@@ -38,7 +39,6 @@ export class ShoppingListService {
                 theIngredient = ingredient;
             }
         });
-
         if(theIngredient) {
             theIngredient.amount = +theIngredient.amount + +newIngredient.amount;
         } else {
